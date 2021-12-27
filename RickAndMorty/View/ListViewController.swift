@@ -22,7 +22,7 @@ class ListViewController: UIViewController {
 
         manager.fetchNextPage { [weak self] success in
             if success {
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
             }
@@ -66,6 +66,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
 protocol DetailViewDelegate {
     func locationFor(view detailVC: LocationDetailViewController?)
+    func imageFor(view detailVC: LocationDetailViewController?)
 }
 
 extension ListViewController: DetailViewDelegate {
@@ -74,7 +75,10 @@ extension ListViewController: DetailViewDelegate {
         guard let ip = tableView.indexPathForSelectedRow else { fatalError("No indexpath to be grabbed?") }
 
         manager.fetchLocationFrom(character: manager.getCharacterAt(index: ip.row)) { (location, error) in
-            if let error = error { print("Fetching location failed with error: \(error)") }
+            if let error = error {
+                print("Fetching location failed with error: \(error)")
+                return
+            }
 
             guard let location = location else {
                 print("Location data couldn't be unwrapped")
@@ -92,5 +96,31 @@ extension ListViewController: DetailViewDelegate {
 
     }
 
+    func imageFor(view detailVC: LocationDetailViewController?) {
+        guard let ip = tableView.indexPathForSelectedRow else { fatalError("No indexpath to be grabbed?") }
+
+        let char = manager.getCharacterAt(index: ip.row)
+
+        manager.getImageDataFor(character: char) { (data, error) in
+            if let error = error {
+                print("Fetching image data failed withe rror: \(error)")
+                return
+            }
+
+            guard let data = data else {
+                print("Image data couldn't be unwrapped")
+                return
+            }
+
+            guard let vc = detailVC else {
+                print("Detail View Controller no longer available.")
+                return
+            }
+
+            vc.imageData = data
+        }
+
+        
+    }
 
 }

@@ -11,9 +11,18 @@ class StorageController {
     private let decoder = JSONDecoder()
     private var characters: [Character] = []
     private var locationsCache: [String : Location] = [:]
+    private var imageDataCache: [Int: Data] = [:]
 
     func charCount() -> Int {
         return characters.count
+    }
+
+    func getCachedImage(for id: Int) -> Data? {
+        return imageDataCache[id]
+    }
+
+    func cacheImage(data: Data, for id: Int) {
+        imageDataCache[id] = data
     }
 
     func parseCharacters(from data: Data) throws {

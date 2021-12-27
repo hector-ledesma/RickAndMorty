@@ -165,6 +165,7 @@
                     <connections>
                         <outlet property="characterImage" destination="Cnw-pz-tWR" id="1HU-2t-DHM"/>
                         <outlet property="dimensionLabel" destination="vgO-rP-mHj" id="Ehl-ti-dlW"/>
+                        <outlet property="locationNameLabel" destination="nM6-2R-XCH" id="pxq-M4-z6C"/>
                         <outlet property="residentsLabel" destination="tQA-CD-658" id="OQm-Vn-Fro"/>
                         <outlet property="typeLabel" destination="Sbg-2r-5gn" id="kkk-rx-3cM"/>
                     </connections>

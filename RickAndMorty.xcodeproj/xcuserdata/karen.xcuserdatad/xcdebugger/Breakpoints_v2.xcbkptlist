@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3D48A497-F06A-482E-B5DD-07F2A38D8CCC"
+            uuid = "3C6D0A93-1F19-4413-8979-263E56F1830E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RickAndMorty/Controller/Manager.swift"
+            filePath = "RickAndMorty/View/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "fetchLocationFrom(character:completion:)"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "locationFor(view:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
