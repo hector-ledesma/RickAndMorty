@@ -70,4 +70,28 @@ class BackendController {
             return
         }.resume()
     }
+
+    func getImageAt(url: String, completion: @escaping (Any?, Error?) -> Void) {
+        guard let url = URL(string: url) else {
+            completion(nil, NSError(domain:"Passed in String was invalid URL.", code: 0, userInfo: nil))
+            return
+        }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+
+        URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+            if let _ = error {
+                completion(nil, error)
+                return
+            }
+
+            guard let data = data else {
+                completion(nil, NSError(domain: "No data", code: 0, userInfo: nil))
+                return
+            }
+
+            completion(data, nil)
+            return
+        }.resume()
+    }
 }

@@ -18,6 +18,7 @@ class LocationDetailViewController: UIViewController {
     {
         didSet {
             fetchLocation()
+            fetchImage()
         }
     }
     var character: Character?
@@ -63,6 +64,32 @@ class LocationDetailViewController: UIViewController {
 
         }
 
+    }
+
+    private func fetchImage() {
+        guard let controller = controller,
+              let character = character else {
+            fatalError("How is this even executing")
+        }
+
+        controller.getImageAt(url: character.image) { (data, error) in
+            if let error = error {
+                print("Got error in fetching location: \(error)")
+            }
+
+            guard let data = data as? Data else {
+                print("Error with data")
+                return
+            }
+
+            self.updateImage(data: data)
+        }
+    }
+
+    private func updateImage(data: Data) {
+        DispatchQueue.main.sync {
+            self.characterImage.image = UIImage(data: data)
+        }
     }
 
 
