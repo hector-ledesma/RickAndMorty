@@ -14,81 +14,49 @@ class LocationDetailViewController: UIViewController {
     @IBOutlet weak var dimensionLabel: UILabel!
     @IBOutlet weak var residentsLabel: UILabel!
 
-    var controller: BackendController?
-    {
+
+    var delegate: DetailViewDelegate? {
         didSet {
             fetchLocation()
-            fetchImage()
         }
     }
-    var character: Character?
-    var location: Location?
-    {
+
+    var location: Location? {
         didSet {
-            DispatchQueue.main.sync {
-                guard let location = location else {
-                    fatalError("Huh? How?")
-                }
-
-                typeLabel.text = location.type
-                dimensionLabel.text = location.dimension
-                residentsLabel.text = "\(location.residents.count)"
-            }
+            updateLocation()
         }
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        updateLocation()
     }
 
     private func fetchLocation() {
-        guard let controller = controller,
-              let character = character else {
-            fatalError("How is this even executing lol")
+        guard let delegate = self.delegate else {
+            fatalError("How executed?")
         }
 
-        controller.locationBy(url: character.location.url) { (data, error) in
-            if let error = error {
-                print("Got error in fetching location: \(error)")
-            }
-
-            guard let data = data as? Location else {
-                print("Error with data")
-                return
-            }
-
-            print("Received Location: \(data)")
-            self.location = data
-
-        }
-
+        delegate.locationFor(view: self)
+        
     }
 
     private func fetchImage() {
-        guard let controller = controller,
-              let character = character else {
-            fatalError("How is this even executing")
-        }
-
-        controller.getImageAt(url: character.image) { (data, error) in
-            if let error = error {
-                print("Got error in fetching location: \(error)")
-            }
-
-            guard let data = data as? Data else {
-                print("Error with data")
-                return
-            }
-
-            self.updateImage(data: data)
-        }
     }
 
     private func updateImage(data: Data) {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             self.characterImage.image = UIImage(data: data)
+        }
+    }
+
+    private func updateLocation() {
+        DispatchQueue.main.async {
+            if !self.isViewLoaded {return}
+            guard let location = self.location else {return}
+            self.typeLabel.text = location.type
+            self.dimensionLabel.text = location.dimension
+            self.residentsLabel.text = "\(location.residents.count)"
         }
     }
 

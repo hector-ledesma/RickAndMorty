@@ -27,14 +27,14 @@ class BackendController {
                 return
             }
 
-            do {
-                let dat = try JSONDecoder().decode([Character].self, from: data)
-                print("Decoded character: \(dat)")
-                completion(dat, nil)
+//            do {
+//                let dat = try JSONDecoder().decode([Character].self, from: data)
+//                print("Decoded character: \(dat)")
+            completion(data, nil)
 
-            } catch let error {
-                completion(nil, error)
-            }
+//            } catch let error {
+//                completion(nil, error)
+//            }
             return
         }.resume()
 
@@ -59,14 +59,14 @@ class BackendController {
                 return
             }
 
-            do {
-                let dat = try JSONDecoder().decode(Location.self, from: data)
-                print("Decoded location: \(dat)")
-                completion(dat, nil)
+//            do {
+//                let dat = try JSONDecoder().decode(Location.self, from: data)
+//                print("Decoded location: \(dat)")
+            completion(data, nil)
 
-            } catch let error {
-                completion(nil, error)
-            }
+//            } catch let error {
+//                completion(nil, error)
+//            }
             return
         }.resume()
     }
