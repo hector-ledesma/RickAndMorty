@@ -23,6 +23,7 @@
 		9C7BE5F6277965EB006FE7A2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7BE5F5277965EB006FE7A2 /* Location.swift */; };
 		9C7BE5F927798253006FE7A2 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7BE5F827798253006FE7A2 /* StorageController.swift */; };
 		9C7BE5FD27798FA8006FE7A2 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7BE5FC27798FA8006FE7A2 /* Manager.swift */; };
+		9CE90010277A74E200846E4A /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE9000F277A74E200846E4A /* Page.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		9C7BE5F5277965EB006FE7A2 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		9C7BE5F827798253006FE7A2 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		9C7BE5FC27798FA8006FE7A2 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		9CE9000F277A74E200846E4A /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				9C215ED727791E4D00B36665 /* CharacterStatus.swift */,
 				9C215EDA27791EC000B36665 /* CharacterGender.swift */,
 				9C7BE5F5277965EB006FE7A2 /* Location.swift */,
+				9CE9000F277A74E200846E4A /* Page.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				9C7BE5F6277965EB006FE7A2 /* Location.swift in Sources */,
 				9C215EA72779052D00B36665 /* AppDelegate.swift in Sources */,
 				9C215EDB27791EC000B36665 /* CharacterGender.swift in Sources */,
+				9CE90010277A74E200846E4A /* Page.swift in Sources */,
 				9C215EC92779105800B36665 /* Character.swift in Sources */,
 				9C7BE5F327794130006FE7A2 /* LocationDetailViewController.swift in Sources */,
 				9C215EC427790BD900B36665 /* BackendController.swift in Sources */,

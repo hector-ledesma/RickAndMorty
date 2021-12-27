@@ -11,10 +11,15 @@ class BackendController {
 
     private let apiURL: URL = URL(string: "https://rickandmortyapi.com/api")!
 
-    func get(completion: @escaping (Any?, Error?) -> Void) {
-        var urlRequest = URLRequest(url: apiURL.appendingPathComponent("character/1,2,3,4,20"))
-        urlRequest.httpMethod = "GET"
+    func getPage(_ page: Int, completion: @escaping (Any?, Error?) -> Void) {
+//        var url = apiURL.appendingPathComponent("character")
+        var comps = URLComponents(string: "https://rickandmortyapi.com/api/character/")!
+        let query = URLQueryItem(name: "page", value: "\(page)")
+        comps.queryItems = [query]
+        var urlRequest = URLRequest(url: comps.url!)
 
+        print("URL request: \(urlRequest)")
+        urlRequest.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             if let _ = error {

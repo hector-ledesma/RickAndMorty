@@ -90,7 +90,8 @@ class Manager {
     }
 
     func fetchNextPage(completion: @escaping (Bool) -> Void) {
-        backendController.get { [weak self] (data, error) in
+
+        backendController.getPage(currentPage) { [weak self] (data, error) in
             if let error = error {
                 print("Error on page fetch. \(error)")
                 completion(false)
@@ -109,7 +110,7 @@ class Manager {
             }
 
             do {
-                try self.storageController.parseCharacters(from: data)
+                try self.storageController.parsePage(from: data)
                 self.currentPage += 1
                 completion(true)
             } catch let error {

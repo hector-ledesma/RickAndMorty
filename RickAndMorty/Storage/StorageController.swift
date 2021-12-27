@@ -25,6 +25,11 @@ class StorageController {
         imageDataCache[id] = data
     }
 
+    func parsePage(from data: Data) throws {
+        let page = try decoder.decode(Page<Character>.self, from: data)
+        characters.append(contentsOf: page.results)
+    }
+
     func parseCharacters(from data: Data) throws {
         let chars = try decoder.decode([Character].self, from: data)
         characters.append(contentsOf: chars)
