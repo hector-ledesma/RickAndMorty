@@ -14,11 +14,18 @@ class Manager {
         return storageController.charCount()
     }
 
+    private let characterRouter: Router<CharacterResource>
+
     private var currentPage: Int = 1
 
-    init(backendController: BackendController = BackendController(), storageController: StorageController = StorageController()) {
+    init(backendController: BackendController = BackendController(),
+         storageController: StorageController = StorageController(),
+         characterRouter:   Router<CharacterResource> = Router() ) {
+
         self.backendController = backendController
         self.storageController = storageController
+        self.characterRouter = characterRouter
+
     }
 
     func getCharacterAt(index: Int) -> Character {
@@ -91,7 +98,34 @@ class Manager {
 
     func fetchNextPage(completion: @escaping (Bool) -> Void) {
 
-        backendController.getPage(currentPage) { [weak self] (data, error) in
+        characterRouter.get(request: .page(number: currentPage)) { [weak self] (data, _, error) in
+            if let error = error {
+                print("Error on page fetch. \(error)")
+                completion(false)
+                return
+            }
+
+            guard let data = data else {
+                print("Error unwrapping data.")
+                completion(false)
+                return
+            }
+
+            guard let self = self else {
+                completion(false)
+                return
+            }
+
+            do {
+                try self.storageController.parsePage(from: data)
+                self.currentPage += 1
+                completion(true)
+            } catch let error {
+                print("Error parsing characters: \(error)")
+                completion(false)
+            }
+        }
+        /*backendController.getPage(currentPage) { [weak self] (data, error) in
             if let error = error {
                 print("Error on page fetch. \(error)")
                 completion(false)
@@ -118,7 +152,7 @@ class Manager {
                 completion(false)
             }
 
-        }
+        }*/
     }
 
 
