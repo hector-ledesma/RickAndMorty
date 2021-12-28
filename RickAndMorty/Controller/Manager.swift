@@ -39,15 +39,16 @@ class Manager {
         if let data = storageController.getCachedImage(for: character.id) {
             print("Image data found in cache.")
             completion(data, nil)
+            return
         }
 
-        backendController.getImageAt(url: character.image) { [weak self] (data, error) in
+        characterRouter.get(request: .imageFor(character: character)) { [weak self] (data, _, error) in
             if let error = error {
                 completion(nil, error)
                 return
             }
 
-            guard let data = data as? Data else {
+            guard let data = data else {
                 completion(nil, NSError(domain: "No data to unwrap", code: 0, userInfo: nil))
                 return
             }

@@ -34,11 +34,18 @@ protocol ResourceRequestType {
 enum CharacterResource {
     case page(number: Int)
     case id(_ id: Int)
+    case imageFor(character: Character)
 }
 
 extension CharacterResource: ResourceRequestType {
     var requestURL: String {
-        return "\(baseURL)\(resource.rawValue)\(queries)"
+        switch self {
+        case .imageFor(character: let character):
+            return character.image
+        default:
+            return "\(baseURL)\(resource.rawValue)\(queries)"
+        }
+
     }
 
     var baseURL: String {
@@ -51,11 +58,12 @@ extension CharacterResource: ResourceRequestType {
 
     var queries: String {
         switch self {
-
         case .page(number: let number):
             return "?page=\(number)"
         case .id(_: let id):
             return "/\(id)"
+        default:
+            return ""
         }
     }
 
@@ -91,7 +99,6 @@ extension LocationResource: ResourceRequestType {
 
     var queries: String {
         switch self {
-
         case .page(number: let number):
             return "?page=\(number)"
         case .id(_: let id):
@@ -121,7 +128,9 @@ class Router<Request: ResourceRequestType>: NetworkRouter {
     private func buildRequestFrom(_ type: Request) -> URLRequest {
         let url = URL(string: type.requestURL)!
         print("Built url \(url)")
-        return URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = type.httpMethod.rawValue
+        return request
     }
 
 }
