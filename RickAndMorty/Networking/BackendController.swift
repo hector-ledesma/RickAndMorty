@@ -77,7 +77,7 @@ extension LocationResource: ResourceRequestType {
         case .url(_: let url):
             return url
         default:
-            return "\(baseURL)\(resource)\(queries)"
+            return "\(baseURL)\(resource.rawValue)\(queries)"
         }
     }
 

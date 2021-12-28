@@ -15,16 +15,19 @@ class Manager {
     }
 
     private let characterRouter: Router<CharacterResource>
+    private let locationRouter: Router<LocationResource>
 
     private var currentPage: Int = 1
 
     init(backendController: BackendController = BackendController(),
          storageController: StorageController = StorageController(),
-         characterRouter:   Router<CharacterResource> = Router() ) {
+         characterRouter:   Router<CharacterResource> = Router(),
+         locationRouter:   Router<LocationResource> = Router()) {
 
         self.backendController = backendController
         self.storageController = storageController
         self.characterRouter = characterRouter
+        self.locationRouter = locationRouter
 
     }
 
@@ -67,13 +70,13 @@ class Manager {
             return
         }
 
-        backendController.locationBy(url: character.location.url) { [weak self](data, error) in
+        locationRouter.get(request: .url(character.location.url)) { [weak self] (data, _, error) in
             if let error = error {
                 completion(nil, error)
                 return
             }
 
-            guard let data = data as? Data else {
+            guard let data = data else {
                 completion(nil, NSError(domain: "No data to unwrap", code: 0, userInfo: nil))
                 return
             }
@@ -92,7 +95,6 @@ class Manager {
                 return
             }
         }
-
 
     }
 
@@ -125,34 +127,6 @@ class Manager {
                 completion(false)
             }
         }
-        /*backendController.getPage(currentPage) { [weak self] (data, error) in
-            if let error = error {
-                print("Error on page fetch. \(error)")
-                completion(false)
-                return
-            }
-
-            guard let data = data as? Data else {
-                print("Error unwrapping data.")
-                completion(false)
-                return
-            }
-
-            guard let self = self else {
-                completion(false)
-                return
-            }
-
-            do {
-                try self.storageController.parsePage(from: data)
-                self.currentPage += 1
-                completion(true)
-            } catch let error {
-                print("Error parsing characters: \(error)")
-                completion(false)
-            }
-
-        }*/
     }
 
 
