@@ -7,7 +7,18 @@
 
 import Foundation
 
-class Manager {
+protocol LogicManager {
+
+    var charCount: Int {get}
+
+    func getCharacterAt(index: Int) -> Character
+    func getImageDataFor(character: Character, completion: @escaping (Data?, Error?) -> Void)
+
+    func fetchNextPage(completion: @escaping (Bool) -> Void)
+    func fetchLocationFor(character: Character, completion: @escaping (Location?, Error?) -> Void)
+
+}
+class Manager: LogicManager {
 
 
 
@@ -64,7 +75,7 @@ class Manager {
 
     }
 
-    func fetchLocationFrom(character: Character, completion: @escaping (Location?, Error?) -> Void) {
+    func fetchLocationFor(character: Character, completion: @escaping (Location?, Error?) -> Void) {
         if let location = storageController.getLocationBy(name: character.location.name) {
             print("Location was in cache")
             completion(location, nil)

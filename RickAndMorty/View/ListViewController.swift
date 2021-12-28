@@ -12,7 +12,7 @@ class ListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    private let manager: Manager = Manager()
+    private let manager: LogicManager = Manager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,7 @@ class ListViewController: UIViewController {
                 }
             }
         }
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,13 +35,14 @@ class ListViewController: UIViewController {
                 fatalError("Couldn't cast destination to view controller class.")
             }
 
-
             detailVC.delegate = self
 
         }
     }
 
 }
+
+// MARK: - UITableView Delegate & DataSource
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,6 +65,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
 }
 
+// MARK: - DetailViewDelegate
+
 protocol DetailViewDelegate {
     func locationFor(view detailVC: LocationDetailViewController?)
     func imageFor(view detailVC: LocationDetailViewController?)
@@ -73,7 +77,7 @@ extension ListViewController: DetailViewDelegate {
     func locationFor(view detailVC: LocationDetailViewController?) {
         guard let ip = tableView.indexPathForSelectedRow else { fatalError("No indexpath to be grabbed?") }
 
-        manager.fetchLocationFrom(character: manager.getCharacterAt(index: ip.row)) { (location, error) in
+        manager.fetchLocationFor(character: manager.getCharacterAt(index: ip.row)) { (location, error) in
             if let error = error {
                 print("Fetching location failed with error: \(error)")
                 return

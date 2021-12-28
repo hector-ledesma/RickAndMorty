@@ -13,7 +13,6 @@
 		9C215EAE2779052D00B36665 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C215EAC2779052D00B36665 /* Main.storyboard */; };
 		9C215EB02779053700B36665 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C215EAF2779053700B36665 /* Assets.xcassets */; };
 		9C215EB32779053700B36665 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C215EB12779053700B36665 /* LaunchScreen.storyboard */; };
-		9C215EC427790BD900B36665 /* BackendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C215EC327790BD900B36665 /* BackendController.swift */; };
 		9C215EC92779105800B36665 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C215EC82779105800B36665 /* Character.swift */; };
 		9C215ED32779134B00B36665 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C215ED22779134B00B36665 /* DataObject.swift */; };
 		9C215ED827791E4D00B36665 /* CharacterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C215ED727791E4D00B36665 /* CharacterStatus.swift */; };
@@ -39,7 +38,6 @@
 		9C215EAF2779053700B36665 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C215EB22779053700B36665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C215EB42779053700B36665 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9C215EC327790BD900B36665 /* BackendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendController.swift; sourceTree = "<group>"; };
 		9C215EC82779105800B36665 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		9C215ED22779134B00B36665 /* DataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
 		9C215ED727791E4D00B36665 /* CharacterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterStatus.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 			children = (
 				9CE9001F277AC3D800846E4A /* Router */,
 				9CE90012277AC31700846E4A /* Resource */,
-				9C215EC327790BD900B36665 /* BackendController.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -264,7 +261,6 @@
 				9CE9001A277AC39900846E4A /* CharacterResource.swift in Sources */,
 				9C7BE5F327794130006FE7A2 /* LocationDetailViewController.swift in Sources */,
 				9CE9001D277AC3C300846E4A /* LocationResource.swift in Sources */,
-				9C215EC427790BD900B36665 /* BackendController.swift in Sources */,
 				9C7BE5FD27798FA8006FE7A2 /* Manager.swift in Sources */,
 				9C7BE5F027793D6D006FE7A2 /* ListTableViewCell.swift in Sources */,
 				9C215ED32779134B00B36665 /* DataObject.swift in Sources */,
