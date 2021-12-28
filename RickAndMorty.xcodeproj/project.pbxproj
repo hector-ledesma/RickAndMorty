@@ -24,6 +24,10 @@
 		9C7BE5F927798253006FE7A2 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7BE5F827798253006FE7A2 /* StorageController.swift */; };
 		9C7BE5FD27798FA8006FE7A2 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7BE5FC27798FA8006FE7A2 /* Manager.swift */; };
 		9CE90010277A74E200846E4A /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE9000F277A74E200846E4A /* Page.swift */; };
+		9CE90015277AC34000846E4A /* ResourceRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE90014277AC34000846E4A /* ResourceRequestType.swift */; };
+		9CE9001A277AC39900846E4A /* CharacterResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE90019277AC39900846E4A /* CharacterResource.swift */; };
+		9CE9001D277AC3C300846E4A /* LocationResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE9001C277AC3C300846E4A /* LocationResource.swift */; };
+		9CE90021277AC3EE00846E4A /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE90020277AC3EE00846E4A /* NetworkRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		9C7BE5F827798253006FE7A2 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		9C7BE5FC27798FA8006FE7A2 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		9CE9000F277A74E200846E4A /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		9CE90014277AC34000846E4A /* ResourceRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRequestType.swift; sourceTree = "<group>"; };
+		9CE90019277AC39900846E4A /* CharacterResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResource.swift; sourceTree = "<group>"; };
+		9CE9001C277AC3C300846E4A /* LocationResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResource.swift; sourceTree = "<group>"; };
+		9CE90020277AC3EE00846E4A /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +124,8 @@
 		9C215EBD2779067B00B36665 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				9CE9001F277AC3D800846E4A /* Router */,
+				9CE90012277AC31700846E4A /* Resource */,
 				9C215EC327790BD900B36665 /* BackendController.swift */,
 			);
 			path = Networking;
@@ -154,6 +164,24 @@
 				9C7BE5FC27798FA8006FE7A2 /* Manager.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		9CE90012277AC31700846E4A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				9CE90014277AC34000846E4A /* ResourceRequestType.swift */,
+				9CE90019277AC39900846E4A /* CharacterResource.swift */,
+				9CE9001C277AC3C300846E4A /* LocationResource.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		9CE9001F277AC3D800846E4A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				9CE90020277AC3EE00846E4A /* NetworkRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +260,10 @@
 				9C215EDB27791EC000B36665 /* CharacterGender.swift in Sources */,
 				9CE90010277A74E200846E4A /* Page.swift in Sources */,
 				9C215EC92779105800B36665 /* Character.swift in Sources */,
+				9CE90015277AC34000846E4A /* ResourceRequestType.swift in Sources */,
+				9CE9001A277AC39900846E4A /* CharacterResource.swift in Sources */,
 				9C7BE5F327794130006FE7A2 /* LocationDetailViewController.swift in Sources */,
+				9CE9001D277AC3C300846E4A /* LocationResource.swift in Sources */,
 				9C215EC427790BD900B36665 /* BackendController.swift in Sources */,
 				9C7BE5FD27798FA8006FE7A2 /* Manager.swift in Sources */,
 				9C7BE5F027793D6D006FE7A2 /* ListTableViewCell.swift in Sources */,
@@ -240,6 +271,7 @@
 				9C215EA92779052D00B36665 /* SceneDelegate.swift in Sources */,
 				9C215ED827791E4D00B36665 /* CharacterStatus.swift in Sources */,
 				9C7BE5F927798253006FE7A2 /* StorageController.swift in Sources */,
+				9CE90021277AC3EE00846E4A /* NetworkRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

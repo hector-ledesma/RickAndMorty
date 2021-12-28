@@ -8,23 +8,23 @@
 import Foundation
 
 class Manager {
-    private let backendController: BackendController
+
+
+
+    private let characterRouter: Router<CharacterResource>
+    private let locationRouter: Router<LocationResource>
     private let storageController: StorageController
+
+    private var currentPage: Int = 1
+
     var charCount: Int {
         return storageController.charCount()
     }
 
-    private let characterRouter: Router<CharacterResource>
-    private let locationRouter: Router<LocationResource>
-
-    private var currentPage: Int = 1
-
-    init(backendController: BackendController = BackendController(),
-         storageController: StorageController = StorageController(),
+    init(storageController: StorageController = StorageController(),
          characterRouter:   Router<CharacterResource> = Router(),
          locationRouter:   Router<LocationResource> = Router()) {
 
-        self.backendController = backendController
         self.storageController = storageController
         self.characterRouter = characterRouter
         self.locationRouter = locationRouter
