@@ -86,11 +86,6 @@ class Manager: LogicManager {
             completion(location, nil)
             return
         }
-        else if character.location.name == "unknown" {
-            let location = Location(id: -1, name: "unknown", type: "???", dimension: "???", residents: [], url: "")
-            completion(location, nil)
-            return
-        }
 
         locationRouter.get(request: .url(character.location.url)) { [weak self] (data, _, error) in
             if let error = error {

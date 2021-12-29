@@ -10,8 +10,14 @@ import Foundation
 class StorageController {
     private let decoder = JSONDecoder()
     private var characters: [Character] = []
-    private var locationsCache: [String : Location] = [:]
     private var imageDataCache: [Int: Data] = [:]
+    // Initialize cache with placeholder Location for unknown location edge case.
+    private var locationsCache: [String : Location] = ["unknown":Location(id: -1,
+                                                                          name: "unknown",
+                                                                          type: "???",
+                                                                          dimension: "???",
+                                                                          residents: [],
+                                                                          url: "")]
 
     func charCount() -> Int {
         return characters.count
