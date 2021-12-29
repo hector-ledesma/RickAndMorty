@@ -84,7 +84,7 @@
 		9C215EA52779052D00B36665 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
-				9C7BE5FB27798B55006FE7A2 /* Controller */,
+				9C7BE5FB27798B55006FE7A2 /* Business Logic */,
 				9C215EC227790B1100B36665 /* Storyboard */,
 				9C215EBF2779071400B36665 /* View */,
 				9C215EBE277906FE00B36665 /* Storage */,
@@ -155,12 +155,12 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		9C7BE5FB27798B55006FE7A2 /* Controller */ = {
+		9C7BE5FB27798B55006FE7A2 /* Business Logic */ = {
 			isa = PBXGroup;
 			children = (
 				9C7BE5FC27798FA8006FE7A2 /* Manager.swift */,
 			);
-			path = Controller;
+			path = "Business Logic";
 			sourceTree = "<group>";
 		};
 		9CE90012277AC31700846E4A /* Resource */ = {

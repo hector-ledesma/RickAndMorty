@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum UnknownCase {
+    case location
+    case image
+}
+
 protocol LogicManager {
 
     var charCount: Int {get}
@@ -78,6 +83,11 @@ class Manager: LogicManager {
     func fetchLocationFor(character: Character, completion: @escaping (Location?, Error?) -> Void) {
         if let location = storageController.getLocationBy(name: character.location.name) {
             print("Location was in cache")
+            completion(location, nil)
+            return
+        }
+        else if character.location.name == "unknown" {
+            let location = Location(id: -1, name: "unknown", type: "???", dimension: "???", residents: [], url: "")
             completion(location, nil)
             return
         }

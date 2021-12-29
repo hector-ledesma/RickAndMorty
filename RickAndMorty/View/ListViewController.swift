@@ -76,9 +76,14 @@ protocol DetailViewDelegate {
 extension ListViewController: DetailViewDelegate {
 
     func locationFor(view detailVC: LocationDetailViewController?) {
-        guard let ip = tableView.indexPathForSelectedRow else { fatalError("No indexpath to be grabbed?") }
+        guard let ip = tableView.indexPathForSelectedRow else {
+            print("No indexpath to be grabbed.")
+            return
+        }
 
-        manager.fetchLocationFor(character: manager.getCharacterAt(index: ip.row)) { (location, error) in
+        let char = manager.getCharacterAt(index: ip.row)
+
+        manager.fetchLocationFor(character: char) { (location, error) in
             if let error = error {
                 print("Fetching location failed with error: \(error)")
                 return
