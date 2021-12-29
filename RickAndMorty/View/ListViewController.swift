@@ -58,6 +58,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.nameLabel.text = char.name
         cell.statusLabel.text = char.status.rawValue
         cell.speciesLabel.text = char.species
+        cell.locationLabel.text = char.location.name
 
         return cell
     }
