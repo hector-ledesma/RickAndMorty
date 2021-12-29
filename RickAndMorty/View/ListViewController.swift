@@ -91,6 +91,7 @@ protocol DetailViewDelegate {
 extension ListViewController: DetailViewDelegate {
 
     func locationFor(view detailVC: LocationDetailViewController?) {
+        weak var vc = detailVC
         guard let ip = tableView.indexPathForSelectedRow else {
             print("No indexpath to be grabbed.")
             return
@@ -109,7 +110,7 @@ extension ListViewController: DetailViewDelegate {
                 return
             }
 
-            guard let vc = detailVC else {
+            guard let vc = vc else {
                 print("Detail View Controller no longer available.")
                 return
             }
@@ -121,6 +122,7 @@ extension ListViewController: DetailViewDelegate {
     }
 
     func imageFor(view detailVC: LocationDetailViewController?) {
+        weak var vc = detailVC
         guard let ip = tableView.indexPathForSelectedRow else { fatalError("No indexpath to be grabbed?") }
 
         let char = manager.getCharacterAt(index: ip.row)
@@ -136,7 +138,7 @@ extension ListViewController: DetailViewDelegate {
                 return
             }
 
-            guard let vc = detailVC else {
+            guard let vc = vc else {
                 print("Detail View Controller no longer available.")
                 return
             }
