@@ -63,6 +63,21 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // After reaching the end of the table
+        if indexPath.row + 1 == manager.charCount && (manager as! Manager).currentPage < 44 {
+
+            manager.fetchNextPage { [weak self] (success) in
+                if success {
+                    DispatchQueue.main.async{
+                        self?.tableView.reloadData()
+                    }
+                }
+            }
+
+        }
+    }
+
 
 }
 

@@ -37,8 +37,6 @@ class LocationDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateLocation()
-        updateImage()
     }
 
     private func fetchLocation() {

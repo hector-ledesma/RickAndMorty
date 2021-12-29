@@ -31,7 +31,7 @@ class Manager: LogicManager {
     private let locationRouter: Router<LocationResource>
     private let storageController: StorageController
 
-    private var currentPage: Int = 1
+    private(set) var currentPage: Int = 1
 
     var charCount: Int {
         return storageController.charCount()
