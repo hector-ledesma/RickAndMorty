@@ -20,6 +20,12 @@ class CharacterTabViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
 
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        layout.minimumInteritemSpacing = 20
+        layout.minimumLineSpacing = 20
+        collectionView!.collectionViewLayout = layout
+
         manager.fetchNextPage { [weak self] success in
             if success {
                 DispatchQueue.main.async {
@@ -43,45 +49,6 @@ class CharacterTabViewController: UIViewController {
 
 }
 
-// MARK: - UITableView Delegate & DataSource
-/*
-extension CharacterTabViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return manager.charCount
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as? ListTableViewCell else {
-            fatalError("Boom goes the cell")
-        }
-
-        let char = manager.getCharacterAt(index: indexPath.row)
-        cell.nameLabel.text = char.name
-        cell.statusLabel.text = char.status.rawValue
-        cell.speciesLabel.text = char.species
-        cell.locationLabel.text = char.location.name
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // After reaching the end of the table
-        if indexPath.row + 1 == manager.charCount && (manager as! Manager).currentPage < 44 {
-
-            manager.fetchNextPage { [weak self] (success) in
-                if success {
-                    DispatchQueue.main.async{
-                        self?.tableView.reloadData()
-                    }
-                }
-            }
-
-        }
-    }
-
-
-}*/
-
 // MARK: - CollectionView Protocols
 extension CharacterTabViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -95,17 +62,46 @@ extension CharacterTabViewController: UICollectionViewDelegate, UICollectionView
             fatalError("Checkthis")
         }
 
+        // Cell data
         let char = manager.getCharacterAt(index: indexPath.row)
         cell.statusLabel.text = char.status.rawValue
         cell.nameLabel.text = char.name
         cell.episodesLabel.text = "\(char.episode.count) episodes"
         cell.locationLabel.text = char.location.name
 
+        // Cell styling
+        switch char.status {
+        case .Alive:
+            cell.layer.backgroundColor = UIColor(red: 183/255, green: 247/255, blue: 223/255, alpha: 1.0).cgColor
+//            cell.layer.shadowColor = UIColor.systemGreen.cgColor
+        case .Dead:
+            cell.layer.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 188/255, alpha: 1.0).cgColor
+//            cell.layer.shadowColor = UIColor.systemRed.cgColor
+        case .unknown:
+            cell.layer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0).cgColor
+//            cell.layer.shadowColor = UIColor.lightGray.cgColor
+        }
+//        cell.layer.borderWidth = 2.0
+//        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.cornerRadius = 17.0
+        cell.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cell.layer.shadowRadius = 3.0
+        cell.layer.shadowOpacity = 0.6
+        cell.layer.masksToBounds = false
+
+
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 138, height: 198)
+        let perRow = 2
+        let spacing = 20
+        let total = (2*spacing) + ((perRow - 1) * spacing)
+        let screenSize = UIScreen.main.bounds
+        let width = screenSize.width
+        let finalw = (Int(width)-total)/perRow
+        return CGSize(width: finalw, height: 200)
     }
 
 

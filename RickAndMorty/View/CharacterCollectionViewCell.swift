@@ -16,5 +16,5 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var locationLabel: UILabel!
 
 
-    
+
 }
