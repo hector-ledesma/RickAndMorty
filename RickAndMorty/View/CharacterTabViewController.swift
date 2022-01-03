@@ -7,22 +7,23 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+class CharacterTabViewController: UIViewController {
 
 
-    @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
 
     private let manager: LogicManager = Manager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
 
         manager.fetchNextPage { [weak self] success in
             if success {
                 DispatchQueue.main.async {
-                    self?.tableView.reloadData()
+                    self?.collectionView.reloadData()
                 }
             }
         }
@@ -43,8 +44,8 @@ class ListViewController: UIViewController {
 }
 
 // MARK: - UITableView Delegate & DataSource
-
-extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+/*
+extension CharacterTabViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return manager.charCount
     }
@@ -79,6 +80,37 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
 
+}*/
+
+// MARK: - CollectionView Protocols
+extension CharacterTabViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return manager.charCount
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        // TODO: - Replace fatal error with error handling
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCharCell", for: indexPath) as? CharacterCollectionViewCell else {
+            fatalError("Checkthis")
+        }
+
+        let char = manager.getCharacterAt(index: indexPath.row)
+        cell.statusLabel.text = char.status.rawValue
+        cell.nameLabel.text = char.name
+        cell.episodesLabel.text = "\(char.episode.count) episodes"
+        cell.locationLabel.text = char.location.name
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 138, height: 198)
+    }
+
+
+
+
 }
 
 // MARK: - DetailViewDelegate
@@ -88,16 +120,17 @@ protocol DetailViewDelegate {
     func imageFor(view detailVC: LocationDetailViewController?)
 }
 
-extension ListViewController: DetailViewDelegate {
+extension CharacterTabViewController: DetailViewDelegate {
 
     func locationFor(view detailVC: LocationDetailViewController?) {
         weak var vc = detailVC
-        guard let ip = tableView.indexPathForSelectedRow else {
+        guard let ip = collectionView.indexPathsForSelectedItems else {
             print("No indexpath to be grabbed.")
             return
         }
 
-        let char = manager.getCharacterAt(index: ip.row)
+        let char = manager.getCharacterAt(index: ip[0].row)
+        print("Fetching location for: \(char.id) | \(char.name)")
 
         manager.fetchLocationFor(character: char) { (location, error) in
             if let error = error {
@@ -123,9 +156,10 @@ extension ListViewController: DetailViewDelegate {
 
     func imageFor(view detailVC: LocationDetailViewController?) {
         weak var vc = detailVC
-        guard let ip = tableView.indexPathForSelectedRow else { fatalError("No indexpath to be grabbed?") }
+        guard let ip = collectionView.indexPathsForSelectedItems else { fatalError("No indexpath to be grabbed?") }
 
-        let char = manager.getCharacterAt(index: ip.row)
+        let char = manager.getCharacterAt(index: ip[0].row)
+        print("Fetching image for: \(char.id) | \(char.name)")
 
         manager.getImageDataFor(character: char) { (data, error) in
             if let error = error {

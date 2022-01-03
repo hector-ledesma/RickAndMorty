@@ -37,6 +37,8 @@ class LocationDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateImage()
+        updateLocation()
     }
 
     private func fetchLocation() {
@@ -64,7 +66,7 @@ class LocationDetailViewController: UIViewController {
                 print("No image data could be found.")
                 return
             }
-            self.characterImage.image = UIImage(data: data)
+            self.characterImage?.image = UIImage(data: data)
         }
     }
 
