@@ -86,9 +86,26 @@ extension CharacterTabViewController: UICollectionViewDelegate, UICollectionView
         cell.layer.cornerRadius = 5.0
         cell.layer.shadowColor = UIColor.lightGray.cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 0)
-        cell.layer.shadowRadius = 3.0
-        cell.layer.shadowOpacity = 0.6
+        cell.layer.shadowRadius = 5.0
+        cell.layer.shadowOpacity = 0.5
         cell.layer.masksToBounds = false
+
+        // Fetch image
+        manager.getImageDataFor(character: char) { (data, error) in
+            if let error = error {
+                print("Got error fetching image for cell: \(error)")
+                return
+            }
+            guard let data = data else {
+                print("Couldn't unwrap image data in cell closure.")
+                return
+            }
+            DispatchQueue.main.async {
+                cell.imageView?.layer.cornerRadius = cell.imageView.frame.height/2
+                cell.imageView?.image = UIImage(data: data)
+            }
+
+        }
 
 
         return cell

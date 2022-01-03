@@ -41,27 +41,26 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.badge.exclam" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Klq-WL-UUQ">
-                                                    <rect key="frame" x="21" y="35" width="100" height="99.5"/>
+                                                    <rect key="frame" x="25" y="35" width="92" height="92"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Klq-WL-UUQ" secondAttribute="height" multiplier="1:1" id="CRQ-qW-tb5"/>
-                                                        <constraint firstAttribute="width" constant="100" id="ONH-Pk-au8"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NrO-ez-irR">
-                                                    <rect key="frame" x="18.5" y="145" width="105.5" height="16"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="NrO-ez-irR">
+                                                    <rect key="frame" x="10" y="137.5" width="122" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxx episodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbn-Md-3rd">
-                                                    <rect key="frame" x="34.5" y="171" width="73.5" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxx episodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="vbn-Md-3rd">
+                                                    <rect key="frame" x="34.5" y="166.5" width="73.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpl-xu-txG">
-                                                    <rect key="frame" x="29.5" y="212" width="83" height="15"/>
-                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location name" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Zpl-xu-txG">
+                                                    <rect key="frame" x="21" y="209" width="100.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                                     <color key="textColor" systemColor="systemBlueColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -74,7 +73,8 @@
                                                 <constraint firstAttribute="bottom" secondItem="Zpl-xu-txG" secondAttribute="bottom" constant="20" id="G04-BJ-Jhj"/>
                                                 <constraint firstItem="vbn-Md-3rd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ane-rd-5hp" secondAttribute="leading" constant="10" id="LYg-lm-HlE"/>
                                                 <constraint firstItem="NrO-ez-irR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ane-rd-5hp" secondAttribute="leading" constant="10" id="Lo4-8g-W4N"/>
-                                                <constraint firstItem="vbn-Md-3rd" firstAttribute="top" secondItem="NrO-ez-irR" secondAttribute="bottom" constant="10" id="Ndf-tU-Aec"/>
+                                                <constraint firstItem="vbn-Md-3rd" firstAttribute="top" secondItem="NrO-ez-irR" secondAttribute="bottom" constant="5" id="Ndf-tU-Aec"/>
+                                                <constraint firstItem="Klq-WL-UUQ" firstAttribute="width" secondItem="ane-rd-5hp" secondAttribute="width" multiplier="0.65" id="PIW-NL-pS6"/>
                                                 <constraint firstItem="Klq-WL-UUQ" firstAttribute="centerX" secondItem="ane-rd-5hp" secondAttribute="centerX" id="TfH-qZ-wqp"/>
                                                 <constraint firstItem="NrO-ez-irR" firstAttribute="centerX" secondItem="ane-rd-5hp" secondAttribute="centerX" id="bql-TH-p8Q"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vbn-Md-3rd" secondAttribute="trailing" constant="10" id="cP3-Ut-Wbq"/>
