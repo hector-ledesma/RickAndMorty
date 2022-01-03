@@ -83,7 +83,7 @@ extension CharacterTabViewController: UICollectionViewDelegate, UICollectionView
         }
 //        cell.layer.borderWidth = 2.0
 //        cell.layer.borderColor = UIColor.lightGray.cgColor
-        cell.layer.cornerRadius = 17.0
+        cell.layer.cornerRadius = 5.0
         cell.layer.shadowColor = UIColor.lightGray.cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 0)
         cell.layer.shadowRadius = 3.0
@@ -95,13 +95,9 @@ extension CharacterTabViewController: UICollectionViewDelegate, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let perRow = 2
-        let spacing = 20
-        let total = (2*spacing) + ((perRow - 1) * spacing)
         let screenSize = UIScreen.main.bounds
-        let width = screenSize.width
-        let finalw = (Int(width)-total)/perRow
-        return CGSize(width: finalw, height: 200)
+        let width = (screenSize.width-60)/2
+        return CGSize(width: width, height: width*1.5)
     }
 
 
