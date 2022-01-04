@@ -37,8 +37,8 @@ class CharacterTabViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LocationDetailView" {
-            guard let detailVC = segue.destination as? LocationDetailViewController else {
+        if segue.identifier == "CharacterDetailView" {
+            guard let detailVC = segue.destination as? CharacterDetailViewController else {
                 fatalError("Couldn't cast destination to view controller class.")
             }
 
@@ -51,6 +51,7 @@ class CharacterTabViewController: UIViewController {
 
 // MARK: - CollectionView Protocols
 extension CharacterTabViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return manager.charCount
     }
@@ -73,16 +74,11 @@ extension CharacterTabViewController: UICollectionViewDelegate, UICollectionView
         switch char.status {
         case .Alive:
             cell.layer.backgroundColor = UIColor(red: 183/255, green: 247/255, blue: 223/255, alpha: 1.0).cgColor
-//            cell.layer.shadowColor = UIColor.systemGreen.cgColor
         case .Dead:
             cell.layer.backgroundColor = UIColor(red: 255/255, green: 188/255, blue: 188/255, alpha: 1.0).cgColor
-//            cell.layer.shadowColor = UIColor.systemRed.cgColor
         case .unknown:
             cell.layer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0).cgColor
-//            cell.layer.shadowColor = UIColor.lightGray.cgColor
         }
-//        cell.layer.borderWidth = 2.0
-//        cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.cornerRadius = 5.0
         cell.layer.shadowColor = UIColor.lightGray.cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -125,13 +121,13 @@ extension CharacterTabViewController: UICollectionViewDelegate, UICollectionView
 // MARK: - DetailViewDelegate
 
 protocol DetailViewDelegate {
-    func locationFor(view detailVC: LocationDetailViewController?)
-    func imageFor(view detailVC: LocationDetailViewController?)
+    func locationFor(view detailVC: CharacterDetailViewController?)
+    func imageFor(view detailVC: CharacterDetailViewController?)
 }
 
 extension CharacterTabViewController: DetailViewDelegate {
 
-    func locationFor(view detailVC: LocationDetailViewController?) {
+    func locationFor(view detailVC: CharacterDetailViewController?) {
         weak var vc = detailVC
         guard let ip = collectionView.indexPathsForSelectedItems else {
             print("No indexpath to be grabbed.")
@@ -157,13 +153,13 @@ extension CharacterTabViewController: DetailViewDelegate {
                 return
             }
 
-            vc.location = location
+//            vc.location = location
 
         }
 
     }
 
-    func imageFor(view detailVC: LocationDetailViewController?) {
+    func imageFor(view detailVC: CharacterDetailViewController?) {
         weak var vc = detailVC
         guard let ip = collectionView.indexPathsForSelectedItems else { fatalError("No indexpath to be grabbed?") }
 
@@ -186,7 +182,7 @@ extension CharacterTabViewController: DetailViewDelegate {
                 return
             }
 
-            vc.imageData = data
+//            vc.imageData = data
         }
 
         
